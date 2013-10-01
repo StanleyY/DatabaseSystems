@@ -56,6 +56,10 @@ FROM orders o, customers c, agents a
 WHERE o.cid = c.cid AND o.aid = a.aid AND c.city = a.city;
 
 -- Get the names of customers and agents in the same city, along with the name of the city, regardless of whether or not the customer has ever placed an order with that agent.
+SELECT DISTINCT c.name, a.name, c.city
+FROM customers c, agents a
+WHERE c.city = a.city
+ORDER BY c.city;
 
 -- Get the name and city of customers who live in the city where the least number of products are made.
 
