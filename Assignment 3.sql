@@ -19,6 +19,14 @@ FROM agents a, orders o
 WHERE a.aid = o.aid AND o.cid = 'c002';
 
 -- Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto. Use subqueries. 
+SELECT DISTINCT pid
+FROM orders
+WHERE aid IN (SELECT aid
+			  FROM orders
+	          WHERE cid IN (SELECT cid
+							FROM customers
+							WHERE city = 'Kyoto')
+			  );
 
 -- Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto. Use joins thus time; no subqueries. 
 
