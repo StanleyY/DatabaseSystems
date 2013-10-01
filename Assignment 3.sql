@@ -71,6 +71,12 @@ WHERE c.city = (SELECT city
 				LIMIT 1);
 
 -- Get the name and city of customers who live in a city where the most number of products are made. 
+SELECT c.name, c.city FROM customers c
+WHERE c.city = (SELECT city 
+				FROM products 
+				GROUP BY city 
+				ORDER BY SUM(quantity) DESC 
+				LIMIT 1);
 
 -- Get the name and city of customers who live in any city where the most number of products are made.
 
