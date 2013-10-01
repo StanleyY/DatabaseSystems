@@ -7,8 +7,16 @@
 ------------------
 
 -- Get the cities of agents booking an order for customer c002. Use a subquery. 
+SELECT DISTINCT city 
+FROM agents 
+WHERE aid IN (SELECT DISTINCT aid 
+			  FROM orders 
+			  WHERE cid = 'c002');
 
 -- Get the cities of agents booking an order for customer c002. This time use joins; no subqueries. 
+SELECT a.city 
+FROM agents a, orders o 
+WHERE a.aid = o.aid AND o.cid = 'c002';
 
 -- Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto. Use subqueries. 
 
