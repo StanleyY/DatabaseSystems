@@ -51,7 +51,9 @@ ON o.cid = c.cid
 WHERE o.ordno IS NULL;
 
 -- Get the names of customers who placed at least one order through an agent in their city, along with those agent(s) names.
-
+SELECT DISTINCT c.name, a.name
+FROM orders o, customers c, agents a
+WHERE o.cid = c.cid AND o.aid = a.aid AND c.city = a.city;
 
 -- Get the names of customers and agents in the same city, along with the name of the city, regardless of whether or not the customer has ever placed an order with that agent.
 
