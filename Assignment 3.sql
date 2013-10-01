@@ -62,6 +62,13 @@ WHERE c.city = a.city
 ORDER BY c.city;
 
 -- Get the name and city of customers who live in the city where the least number of products are made.
+SELECT c.name, c.city 
+FROM customers c
+WHERE c.city = (SELECT city 
+				FROM products 
+				GROUP BY city 
+				ORDER BY SUM(quantity) ASC 
+				LIMIT 1);
 
 -- Get the name and city of customers who live in a city where the most number of products are made. 
 
