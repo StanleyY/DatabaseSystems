@@ -71,7 +71,8 @@ WHERE c.city IN (SELECT city
 				LIMIT 1);
 
 -- Get the name and city of customers who live in a city where the most number of products are made. 
-SELECT c.name, c.city FROM customers c
+SELECT c.name, c.city 
+FROM customers c
 WHERE c.city IN (SELECT city 
 				FROM products 
 				GROUP BY city 
@@ -92,6 +93,10 @@ WHERE c.city IN (SELECT city
 				);
 
 -- List the products whose priceUSD is above the average priceUSD.
+SELECT name
+FROM products
+WHERE priceUSD > (SELECT AVG(priceUSD)
+				  FROM products);
 
 -- Show the customer name, pid ordered, and the dollars for all customer orders, sorted by dollars from high to low.
 
