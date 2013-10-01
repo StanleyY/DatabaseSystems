@@ -99,6 +99,10 @@ WHERE priceUSD > (SELECT AVG(priceUSD)
 				  FROM products);
 
 -- Show the customer name, pid ordered, and the dollars for all customer orders, sorted by dollars from high to low.
+SELECT c.name, o.pid, o.dollars
+FROM orders o, customers c
+WHERE o.cid = c.cid
+ORDER BY o.dollars DESC;
 
 -- Show all customer names (in order) and their total ordered, and nothing more. Use coalesce to avoid showing NULLs. 
 
