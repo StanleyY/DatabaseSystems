@@ -29,15 +29,19 @@ WHERE aid IN (SELECT aid
 			  );
 
 -- Get the pids of products ordered through any agent who makes at least one order for a customer in Kyoto. Use joins thus time; no subqueries. 
-SELECT DISTINCT o2.pid FROM orders o1
+SELECT DISTINCT o2.pid 
+FROM orders o1
 INNER JOIN customers c
 ON c.cid = o1.cid AND c.city = 'Kyoto'
 FULL JOIN orders o2
 ON o2.aid = o1.aid
 WHERE o1.ordno IS NOT NULL
-ORDER BY o2.pid
+ORDER BY o2.pid;
 
 -- Get the names of customers who have never placed an order. Use a subquery.
+SELECT name 
+FROM customers
+WHERE cid NOT IN (SELECT DISTINCT cid FROM orders);
 
 -- Get the names of customers who have never placed an order. Use an outer join.
 
