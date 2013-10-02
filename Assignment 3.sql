@@ -113,7 +113,11 @@ GROUP BY c.name, c.cid -- I added this c.cid because I wasn't sure if the two AC
 ORDER BY c.name ASC;
 
 -- Show the names of all customers who bought products from agents based in New York along with the names of the products they ordered, and the names of the agents who sold it to them.
-
+SELECT c.name, p.name, a.name
+FROM customers c, orders o, agents a, products p
+WHERE o.cid = c.cid AND o.aid = a.aid AND o.pid = p.pid AND o.aid IN (SELECT aid 
+																	  FROM agents 
+																	  WHERE city = 'New York');
 
 -- Write a query to check the accuracy of the dollars column in the Orders table. This means calculating Orders.dollars from other data in other tables and then comparing those values to the values in Orders.dollars. 
 
