@@ -120,5 +120,8 @@ WHERE o.cid = c.cid AND o.aid = a.aid AND o.pid = p.pid AND o.aid IN (SELECT aid
 																	  WHERE city = 'New York');
 
 -- Write a query to check the accuracy of the dollars column in the Orders table. This means calculating Orders.dollars from other data in other tables and then comparing those values to the values in Orders.dollars. 
+SELECT *
+FROM orders o, customers c, products p
+WHERE o.cid = c.cid AND o.pid = p.pid AND o.dollars = ( p.priceUSD * o.qty * ((100 - c.discount) / 100))
 
 -- Create an error in the dollars column of the Orders table so that you can verify your accuracy checking query.
