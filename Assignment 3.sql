@@ -105,8 +105,15 @@ WHERE o.cid = c.cid
 ORDER BY o.dollars DESC;
 
 -- Show all customer names (in order) and their total ordered, and nothing more. Use coalesce to avoid showing NULLs. 
+SELECT c.name, COALESCE(SUM(o.qty),0) AS "Total # of Products Ordered"
+FROM customers c
+LEFT OUTER JOIN orders o
+ON c.cid = o.cid
+GROUP BY c.name, c.cid -- I added this c.cid because I wasn't sure if the two ACME were considered different customers, remove it if they aren't
+ORDER BY c.name ASC;
 
 -- Show the names of all customers who bought products from agents based in New York along with the names of the products they ordered, and the names of the agents who sold it to them.
+
 
 -- Write a query to check the accuracy of the dollars column in the Orders table. This means calculating Orders.dollars from other data in other tables and then comparing those values to the values in Orders.dollars. 
 
